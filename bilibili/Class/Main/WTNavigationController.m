@@ -8,6 +8,8 @@
 
 #import "WTNavigationController.h"
 #import <objc/runtime.h>
+//#import "Const.h"
+
 @interface WTNavigationController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -35,6 +37,8 @@
         //关闭系统的边缘手势
         self.interactivePopGestureRecognizer.enabled = NO;
     
+    
+    
 }
 
 
@@ -43,28 +47,28 @@
     [self.interactivePopGestureRecognizer.delegate performSelector:@selector(handleNavigationTransition:) withObject:panGesture];
   
     if (panGesture.state == UIGestureRecognizerStateBegan) {
-//        NSLog(@"UIGestureRecognizerStateBegan");
     }
     else if (panGesture.state == UIGestureRecognizerStateChanged){
-//        NSLog(@"UIGestureRecognizerStateChanged");
     }
     else if (panGesture.state == UIGestureRecognizerStateEnded){
-//        NSLog(@"UIGestureRecognizerStateEnded");
     }
 }
 
 + (void)initialize{
     
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-    
+    [[UINavigationBar appearance]  setBackgroundImage:[UIImage createImageWithColor:KNormalNavColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage createImageWithColor:KNormalNavColor]];
+ 
+
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     [UINavigationBar appearance].backIndicatorImage =
     [UINavigationBar appearance].backIndicatorTransitionMaskImage =
     [UIImage imageNamed:@"nav_bar_back_icon_white"];
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor greenColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    // 设置导航栏的颜色
+    [[UINavigationBar appearance] setBarTintColor:KNormalNavColor];
+//    [[UINavigationBar appearance] setTintColor:KNormalNavColor];
     // hide title of back button
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
@@ -84,9 +88,9 @@
                                                            NSShadowAttributeName : clearShadow
                                                            } forState:UIControlStateHighlighted];
     
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTintColor:KNormalNavColor];
     
-    [[UIToolbar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setBarTintColor:KNormalNavColor];
     
 }
 

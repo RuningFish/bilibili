@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "WTTabBarController.h"
+#import "WTNavigationController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    WTTabBarController * tabBar = [[WTTabBarController alloc] init];
+    WTNavigationController * nav = [[WTNavigationController alloc] initWithRootViewController:tabBar];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

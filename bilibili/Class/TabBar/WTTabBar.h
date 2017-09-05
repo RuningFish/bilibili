@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class WTTabBar,WTTabBarButton;
+@class WTTabBar,WTTabBarItem;
 @protocol WTTabBarDelegate <NSObject>
 
-- (void)tabbar:(WTTabBar*)tabbar didClickWithButton:(WTTabBarButton *)button;
+- (void)tabbar:(WTTabBar*)tabbar didClickWithIndex:(NSInteger )index;
 
 @end
 
@@ -22,4 +22,5 @@
 
 + (instancetype)tabBar;
 
+- (void)selectItemWithIndex:(NSInteger)index;
 @end

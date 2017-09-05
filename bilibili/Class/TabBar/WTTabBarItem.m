@@ -8,14 +8,34 @@
 
 #import "WTTabBarItem.h"
 
+@interface WTTabBarItem ()
+
+@end
+
 @implementation WTTabBarItem
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)init{
+    
+    if (self = [super init]) {
+        
+        UILabel * newsLabel = [[UILabel alloc] init];
+        self.newsLabel = newsLabel;
+        [self insertSubview:newsLabel atIndex:0];
+        newsLabel.backgroundColor = [UIColor colorWithRed:255/255.0 green:82/255.0 blue:153/255.0 alpha:1.0];
+        newsLabel.hidden = YES;
+    }
+    
+    return self;
 }
-*/
 
+- (void)layoutSubviews{
+    
+    [super layoutSubviews];
+    
+    CGFloat width = 8;
+    CGFloat margin = 10;
+    CGFloat x = self.frame.size.width - width - margin;
+    self.newsLabel.frame = CGRectMake(x, margin, width, width);
+    self.newsLabel.layer.cornerRadius = width * 0.5;
+    self.newsLabel.layer.masksToBounds = YES;
+}
 @end

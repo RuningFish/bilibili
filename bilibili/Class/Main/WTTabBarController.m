@@ -7,31 +7,62 @@
 //
 
 #import "WTTabBarController.h"
-
-@interface WTTabBarController ()
+#import "WTHomeViewController.h"
+#import "WTPartitionViewController.h"
+#import "WTDynamicViewController.h"
+#import "WTDiscoverViewController.h"
+#import "WTMineViewController.h"
+#import "WTTabBar.h"
+#import <objc/runtime.h>
+@interface WTTabBarController ()<WTTabBarDelegate>
 
 @end
 
 @implementation WTTabBarController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // 0.添加自定义的tabbar
+    WTTabBar * tabbar = [WTTabBar tabBar];
+    tabbar.frame = self.tabBar.bounds;
+    [self.tabBar addSubview:tabbar];
+    tabbar.delegate = self;
+    
+    // 1.添加子控制器
+    NSArray * childControllers = @[@"WTHomeViewController",
+                                   @"WTPartitionViewController",
+                                   @"WTDynamicViewController",
+                                   @"WTDiscoverViewController",
+                                   @"WTMineViewController"
+                                   ];
+    
+    for (NSString * child in childControllers) {
+        UIViewController * childController = [[NSClassFromString(child) alloc] init];
+        [self addChildViewController:childController];
+    }
+    
+    // 2.去掉tabbar上的黑线
+    [[UITabBar appearance] setBackgroundImage:[UIImage new]];
+    [[UITabBar appearance] setShadowImage:[UIImage new]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    for (UIView * child in self.tabBar.subviews) {
+        if ([child isKindOfClass:[UIControl class]]) {
+            [child removeFromSuperview];
+        }
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tabbar:(WTTabBar *)tabbar didClickWithIndex:(NSInteger)index{
+    
+      self.selectedIndex = index;
 }
-*/
 
 @end

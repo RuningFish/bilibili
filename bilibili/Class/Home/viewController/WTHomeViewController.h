@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WTHomeViewController : UIViewController
+#import "WTBaseViewController.h"
+@interface WTHomeViewController : WTBaseViewController
 
 @end

@@ -1,4 +1,4 @@
-//
+ //
 //  WTTabBarItem.h
 //  bilibili
 //
@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WTTabBarItem : UIImageView
-
+@property (nonatomic, weak) UILabel * newsLabel;
 @end
