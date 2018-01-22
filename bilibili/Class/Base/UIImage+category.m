@@ -21,7 +21,18 @@
         return image;
     }
     else{
-        return [UIImage imageWithContentsOfFile:[bundle pathForResource:name ofType:@"png"]];
+        
+        NSString * imageName = [NSString stringWithFormat:@"%@@%.0lfx",name,scale];
+        UIImage * image = [UIImage imageWithContentsOfFile:[bundle pathForResource:imageName ofType:@"png"]];
+        
+        if (image) {
+            return image;
+            
+        }
+        else{
+             return [UIImage imageWithContentsOfFile:[bundle pathForResource:name ofType:@"png"]];
+        }
+       
     }
 }
 @end

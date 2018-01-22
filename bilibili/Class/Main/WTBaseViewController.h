@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WTNavigationBar.h"
 @interface WTBaseViewController : UIViewController
 
+/** titleLabel */
+@property (nonatomic, weak) UILabel * titleLabel;
+
+/** navigationBar */
+@property (nonatomic, weak) WTNavigationBar * navigationBar;
 @end

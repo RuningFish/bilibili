@@ -7,7 +7,7 @@
 //
 
 #import "UIBarButtonItem+Extension.h"
-
+#import "UIImage+category.h"
 @implementation UIBarButtonItem (Extension)
 + (instancetype)itemWithType:(UIBarButtonItemType)type Image:(NSString *)image highImage:(NSString *)highImage target:(id)target action:(SEL)action{
     
@@ -32,7 +32,7 @@
     [button setTitle:highTitle forState:UIControlStateHighlighted];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageWithBundleName:image] forState:UIControlStateNormal];
     button.adjustsImageWhenHighlighted = NO;
     [button setImage:[UIImage imageNamed:highImage] forState:UIControlStateHighlighted];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];

@@ -16,8 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.title = @"首页";
+    
+//    self.navigationBar.titleLabel.hidden = self.navigationBar.leftBarButtonItem.hidden = self.navigationBar.rightBarButtonItem.hidden = YES;
+    CGRect leftItemFrame = self.navigationBar.leftBarButtonItem.frame;
+    leftItemFrame.size.width = 50;
+    [self.navigationBar.leftBarButtonItem removeFromSuperview];
+    UIButton * leftBarButtonItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.navigationBar addSubview:leftBarButtonItem];
+    leftBarButtonItem.backgroundColor = [UIColor greenColor];
+    leftBarButtonItem.frame = CGRectMake(10, 0, 50, 44);
+    
+    self.navigationBar.centerImage = [UIImage imageWithBundleName:@"live_entranceFollow_short"];
 }
 
 @end

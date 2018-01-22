@@ -8,7 +8,7 @@
 
 #import "WTNavigationController.h"
 #import <objc/runtime.h>
-//#import "Const.h"
+#import "WTBaseViewController.h"
 
 @interface WTNavigationController ()<UIGestureRecognizerDelegate>
 
@@ -38,7 +38,7 @@
         self.interactivePopGestureRecognizer.enabled = NO;
     
     
-    
+    [self setNavigationBarHidden:YES animated:NO];
 }
 
 
@@ -105,19 +105,10 @@
     return self.childViewControllers.count == 1 ? NO : YES;
 }
 
-- (NSMutableArray *)class_copyIvarList:(id)class {
-    unsigned int count = 0;
-    Ivar * ivars = class_copyIvarList(class, &count);
-    NSMutableArray * property = [NSMutableArray array];
-    for (int i = 0; i < count; i ++) {
-        const char * ivar = ivar_getName(ivars[i]);
-        [property addObject:[NSString stringWithUTF8String:ivar]];
-    }
-    free(ivars);
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
-    return property;
+    [super pushViewController:viewController animated:animated];
 }
-
 
 
 //- (void)viewDidLoad {
